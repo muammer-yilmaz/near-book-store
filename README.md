@@ -31,7 +31,7 @@ export CONTRACT=YOUR_DEV_ACCOUNT_HERE
 ```
 
 Create a Book.
-
+price must be send as near not yocto
 ```bash
 near call $CONTRACT createBook '{"name": "Book Name", "desc": "Book Description", "price" : 5}' --accountId muammer-yilmaz.testnet
 ```
