@@ -10,7 +10,7 @@ cd near-book-store
 yarn
 ```
 
-## How to Use Charity Smart Contract
+## How to Use Bookstore Smart Contract
 
 First login to your account using near cli
 
