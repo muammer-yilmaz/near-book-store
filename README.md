@@ -5,7 +5,7 @@ This project is a simple bookstore on Near blockchain. Users can publish their b
 ## Installation
 
 ```bash
-git clone https://github.com//muammer-yilmaz/near-book-store
+git clone https://github.com/muammer-yilmaz/near-book-store
 cd near-book-store
 yarn
 ```
