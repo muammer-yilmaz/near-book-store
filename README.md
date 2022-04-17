@@ -51,13 +51,13 @@ near call $CONTRACT buyBook '{"id": "Book id"}' --accountId muammer-yilmaz.testn
 Read a Book
 
 ```bash
-near call $CONTRACT getEpisodes '{"id": "Book id"}' --accountId muammer-yilmaz.testnet
+near call $CONTRACT getChapters '{"id": "Book id"}' --accountId muammer-yilmaz.testnet
 ```
 
-Add a episode to your book
+Add a chapter to your book
 
 ```bash
-near call $CONTRACT addEpisode '{"id": "Book id", "text": "Episode Content"}' --accountId muammer-yilmaz.testnet
+near call $CONTRACT addChapter '{"id": "Book id", "content": "Chapter Content"}' --accountId muammer-yilmaz.testnet
 ```
 
 Add a comment to a book

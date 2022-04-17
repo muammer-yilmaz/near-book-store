@@ -4,7 +4,7 @@ import { Context } from "near-sdk-as";
 
 import { toYocto } from "./utils"
 
-import { Book, Comment, Episode } from "./model";
+import { Book, Comment, Chapter } from "./model";
 
 // create a book on blockchain !!book's price must be set with near not Yocto
 export function createBook(name: string, desc: string, price: u8): Book {
@@ -38,16 +38,16 @@ export function getComments(id: u32): Array<Comment> {
 export function setImg(id: u32, link: string): string {
   return Book.setImg(id, link);
 }
-// add episode to a book !Only Owner
-export function addEpisode(id: u32, text: string): Episode {
-  return Book.addEpisode(id, text);
+// add Chapter to a book !Only Owner
+export function addChapter(id: u32, content: string): Chapter {
+  return Book.addChapter(id, content);
 }
-// get all episodes of a book !Only Book Owner
-export function getEpisodes(id: u32): Array<Episode> {
-  let eps = Book.getEpisodes(id);
-  let array = new Array<Episode>()
-  for (let i = 0; i < eps.length; i++) {
-    array.push(eps[i]);
+// get all Chapters of a book !Only Book Owner
+export function getChapters(id: u32): Array<Chapter> {
+  let chapters = Book.getChapters(id);
+  let array = new Array<Chapter>()
+  for (let i = 0; i < chapters.length; i++) {
+    array.push(chapters[i]);
   }
   return array;
 }

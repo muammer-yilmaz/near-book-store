@@ -20,7 +20,7 @@ export class Book {
     desc: string
     img: string
     price: Money
-    episodeList: PersistentVector<Episode> = new PersistentVector<Episode>("episodes")
+    chapterList: PersistentVector<Chapter> = new PersistentVector<Chapter>("chapters")
     comments: PersistentVector<Comment> = new PersistentVector<Comment>("comments")
 
     constructor(owner: AccountId, name: string, desc: string, price: Money) {
@@ -32,8 +32,10 @@ export class Book {
     }
 
     static createBook(owner: AccountId, name: string, desc: string, price: Money): Book {
+        this.assert_book(name);
         const book = new Book(owner, name, desc, price);
         books.set(book.id, book);
+        bookOwners.set(book.id, new Array<string>());
         return book;
     }
 
@@ -82,19 +84,19 @@ export class Book {
         return comments;
     }
 
-    static addEpisode(id: u32, text: string): Episode {
+    static addChapter(id: u32, text: string): Chapter {
         const book = this.findBookById(id)
         this.assert_owner(book, Context.sender);
-        const episode = new Episode(text);
-        book.episodeList.push(episode);
+        const chapter = new Chapter(text);
+        book.chapterList.push(chapter);
 
-        return episode;
+        return chapter;
     }
 
-    static getEpisodes(id: u32): PersistentVector<Episode> {
+    static getChapters(id: u32): PersistentVector<Chapter> {
         this.assert_access(id, Context.sender);
         const book = this.findBookById(id);
-        return book.episodeList;
+        return book.chapterList;
     }
 
     static findBookById(id: u32): Book {
@@ -105,25 +107,28 @@ export class Book {
         return books.values(offset, limit + offset);
     }
 
-    // Is Caller The Owner ?
+    // Caller needs to be The Owner 
     static assert_owner(book: Book, caller: AccountId): void {
         assert(book.owner == caller, 'Only owner can call this function !!');
     }
     // Caller needs to be owner of the book
     static assert_access(id: u32, caller: AccountId): void {
-        let list = bookOwners.getSome(id);
-        assert(list.indexOf(caller) != -1, "Only book owner can call this function !!");
+        //let list = bookOwners.getSome(id);
+        assert(bookOwners.getSome(id).indexOf(caller) != -1, "Only book owner can call this function !!");
     }
     // Book price must be lower or equal than deposited money
     static assert_amount(id: u32): void {
         let book = this.findBookById(id);
         assert(book.price <= Context.attachedDeposit, "Not enough money attached !!")
     }
+
+    static assert_book(name: string): void {
+        assert(!books.contains(math.hash32<string>(name)), "This book name exists. Please select another !!")
+    }
 }
 
-
 @nearBindgen
-export class Episode {
+export class Chapter {
     content: string
     constructor(text: string) {
         this.content = text
