@@ -29,9 +29,10 @@ Export the development account to the $CONTRACT
 ```bash
 export CONTRACT=YOUR_DEV_ACCOUNT_HERE
 ```
+---
 
-Create a Book.\n
-price must be send as near not yocto
+Create a Book.
+
 ```bash
 near call $CONTRACT createBook '{"name": "Book Name", "desc": "Book Description", "price" : 5}' --accountId muammer-yilmaz.testnet
 ```
