@@ -20,14 +20,14 @@ First login to your account using near cli
 near login
 ```
 
-# Scripts
+## Scripts
 
 `near-book-store/scripts`
 
 1. run `dev-deploy.sh` --> builds and deploys contract to blockchain
 2. run any script to interact with contract 
 
-# Commands
+## Commands
 
 Build and deploy the smart contract.
 
@@ -40,6 +40,8 @@ Export the development account to the $CONTRACT
 ```bash
 export CONTRACT=YOUR_DEV_ACCOUNT_HERE
 ```
+
+---
 
 Create a Book.
 
