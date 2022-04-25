@@ -41,8 +41,6 @@ Export the development account to the $CONTRACT
 export CONTRACT=YOUR_DEV_ACCOUNT_HERE
 ```
 
----
-
 Create a Book.
 
 ```bash
